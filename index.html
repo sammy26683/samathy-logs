@@ -65,7 +65,7 @@ async function loadProducts() {
     .from('products')
     .select('id, name, price, description')
     .eq('status', 'Available');
-
+.select('*')
   if (error) {
     productList.textContent = 'Could not load products. Please try again.';
     console.error(error);
