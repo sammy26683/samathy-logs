@@ -34,8 +34,8 @@ footer{text-align:center;background:#101c35;color:white;padding:20px}
 <section id="products">
 <h2>Our Products</h2>
 <div class="card">
-<p>Our product catalogue is being prepared.</p>
-<p>Contact us on WhatsApp for assistance.</p>
+<div id="product-list">Loading products...</div>
+
 </div>
 </section>
 <section id="contact">
@@ -55,6 +55,40 @@ const supabaseClient = window.supabase.createClient(
   'https://pccfbqcorbrqwlxkprva.supabase.co',
   'YOUR_SUPABASE_PUBLISHABLE_KEY'
 );
-</script>
+
+<script>
+async function loadProducts() {
+  const productList = document.getElementById('product-list');
+
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('id, name, price, description')
+    .eq('status', 'available');
+
+  if (error) {
+    productList.textContent = 'Could not load products. Please try again.';
+    console.error(error);
+    return;
+  }
+
+  productList.replaceChildren();
+
+  data.forEach(product => {
+    const card = document.createElement('div');
+    const name = document.createElement('h3');
+    const price = document.createElement('p');
+    const description = document.createElement('p');
+
+    name.textContent = product.name;
+    price.textContent = 'Price: ₦' + product.price;
+    description.textContent = product.description || '';
+
+    card.append(name, price, description);
+    productList.appendChild(card);
+  });
+}
+
+loadProducts();
+
 </body>
 </html>
