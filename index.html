@@ -49,12 +49,51 @@ footer{text-align:center;background:#101c35;color:white;padding:20px}
 <footer>
 <p>© 2026 SAMATHY LOGS</p>
 </footer>
-  https://pccfbqcorbrqwlxkprva.supabase.co/rest/v1/<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const supabaseClient = window.supabase.createClient(
   'https://pccfbqcorbrqwlxkprva.supabase.co',
   sb_publishable_WhFVO642KJuY7WkrVtEKwg_NP7E4Ffq
 );
+
+async function loadProducts() {
+  const productList = document.getElementById('product-list');
+
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('id, name, price, description')
+    .eq('status', 'available');
+
+  if (error) {
+    productList.textContent = 'Could not load products. Please try again.';
+    console.error(error);
+    return;
+  }
+
+  productList.replaceChildren();
+
+  data.forEach(product => {
+    const card = document.createElement('div');
+    const name = document.createElement('h3');
+    const price = document.createElement('p');
+    const description = document.createElement('p');
+
+    name.textContent = product.name;
+    price.textContent = 'Price: ₦' + product.price;
+    description.textContent = product.description || '';
+
+    card.append(name, price, description);
+    productList.appendChild(card);
+  });
+}
+
+loadProducts();
+</script>
+</body>
+</html>
+
 
 <script>
 async function loadProducts() {
