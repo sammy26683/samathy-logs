@@ -64,7 +64,7 @@ async function loadProducts() {
   const { data, error } = await supabaseClient
     .from('products')
     .select('id, name, price, description')
-    .eq('status', 'available');
+    .eq('status', 'Available');
 
   if (error) {
     productList.textContent = 'Could not load products. Please try again.';
