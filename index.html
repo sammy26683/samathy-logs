@@ -63,9 +63,10 @@ async function loadProducts() {
 
   const { data, error } = await supabaseClient
     .from('products')
-    .select('id, name, price, description')
-    .eq('status', 'Available');
-.select('*')
+    .select('*')
+.eq('status', 'Available');
+    
+
   if (error) {
     productList.textContent = 'Could not load products. Please try again.';
     console.error(error);
@@ -80,7 +81,7 @@ async function loadProducts() {
     const price = document.createElement('p');
     const description = document.createElement('p');
 
-    name.textContent = product.name;
+    name.textContent = product.service_type || product.country || 'Product';
     price.textContent = 'Price: ₦' + product.price;
     description.textContent = product.description || '';
 
@@ -127,7 +128,6 @@ async function loadProducts() {
   });
 }
 
-loadProducts();
 </script>
 </body>
 </html>
