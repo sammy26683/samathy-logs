@@ -118,7 +118,7 @@ async function loadProducts() {
     const price = document.createElement('p');
     const description = document.createElement('p');
 
-    name.textContent = product.name;
+    name.textContent = product.service_type || product.country || 'Product';
     price.textContent = 'Price: ₦' + product.price;
     description.textContent = product.description || '';
 
