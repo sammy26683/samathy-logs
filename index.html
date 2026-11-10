@@ -105,9 +105,9 @@ async function loadProducts() {
   if (error) {
     productList.textContent = 'Could not load products. Please try again.';
     console.error(error);
-    return;
+ return;
+alert(JSON.stringify(error));
   }
-
   productList.replaceChildren();
 
   data.forEach(product => {
