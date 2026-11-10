@@ -69,7 +69,7 @@ async function loadProducts() {
 
   if (error) {
     productList.textContent = 'Could not load products. Please try again.';
-    console.error(error);
+    console.error(error);alert(JSON.stringify(error));
     return;
   }
 
