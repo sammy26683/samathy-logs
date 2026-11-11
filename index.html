@@ -62,7 +62,7 @@ async function loadProducts() {
   const productList = document.getElementById('product-list');
 
   const { data, error } = await supabaseClient
-    .from('products')
+    .from('Product').select('*')
     .select('*')
 .eq('status', 'Available');
     
