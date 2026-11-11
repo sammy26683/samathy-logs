@@ -94,7 +94,6 @@ loadProducts();
 </script>
 </body>
 </html>
-async function loadProducts() {
   const productList = document.getElementById('product-list');
 
   const { data, error } = await supabaseClient
@@ -127,4 +126,3 @@ alert(JSON.stringify(error));
 loadProducts();
 </script>
 </body>
-</html>
