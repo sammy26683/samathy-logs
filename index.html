@@ -94,35 +94,3 @@ loadProducts();
 </script>
 </body>
 </html>
-  const productList = document.getElementById('product-list');
-
-  const { data, error } = await supabaseClient
-    .from('products')
-    .select('id, name, price, description')
-    .eq('status', 'Available');
-
-  if (error) {
-    productList.textContent = 'Could not load products. Please try again.';
-    console.error(error);
- return;
-alert(JSON.stringify(error));
-  }
-  productList.replaceChildren();
-
-  data.forEach(product => {
-    const card = document.createElement('div');
-    const name = document.createElement('h3');
-    const price = document.createElement('p');
-    const description = document.createElement('p');
-
-    name.textContent = product.service_type || product.country || 'Product';
-    price.textContent = 'Price: ₦' + product.price;
-    description.textContent = product.description || '';
-
-    card.append(name, price, description);
-    productList.appendChild(card);
-  });
-}
-loadProducts();
-</script>
-</body>
