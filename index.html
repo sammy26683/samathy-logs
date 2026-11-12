@@ -83,9 +83,16 @@ async function loadProducts() {
     price.textContent = 'Price: ₦' + product.price;
     description.textContent = product.description || '';
 
-    card.append(name, price, description);
-    productList.appendChild(card);
-  });
+    const button = document.createElement('button');
+button.textContent = 'Order on WhatsApp';
+
+button.onclick = () => {
+  const message = `Hello, I want to order ${product.name}`;
+  window.open('https://wa.me/2348107681920?text=' + encodeURIComponent(message), '_blank');
+};
+
+card.append(name, price, description, button);
+productList.appendChild(card);
 }
 
 loadProducts();
