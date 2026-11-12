@@ -246,12 +246,12 @@ document.getElementById('login-form').addEventListener('submit', async function(
   document.getElementById('products').style.display = 'block';
   document.getElementById('order').style.display = 'block';
   document.getElementById('register').style.display = 'none';
-
+  
+loadProducts();
+  
   alert('Welcome! You can now shop.');
 });
   
-  alert('Registration successful! Please check your email to confirm your account.');
-}
 function formatPrice(price){
   return '₦' + Number(price).toLocaleString('en-NG');
 }
