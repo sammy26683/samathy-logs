@@ -101,16 +101,14 @@ async function loadProducts() {
     `I want to order ${product.name}. ` +
     `Price: ₦${product.price}.`;
 
-  window.open(
-    'https://wa.me/2348107681920?text=' +
-    encodeURIComponent(message),
-    '_blank'
-  );
-
   alert(
     'Thank you for choosing SAMATHY LOGS! ' +
-    'Please tap Send on WhatsApp to submit your order.'
+    'Tap OK to continue to WhatsApp and send your order.'
   );
+
+  window.location.href =
+    'https://wa.me/2348107681920?text=' +
+    encodeURIComponent(message);
 };
     card.append(name, price, description, button);
     productList.appendChild(card);
