@@ -155,6 +155,31 @@ async function loadProducts() {
 
 loadProducts();
 
+function updateOrderPrice() {
+  const selected = document.getElementById('order-product').value.split('|');
+  document.getElementById('order-price').textContent =
+    'Price: ₦' + Number(selected[1]).toLocaleString('en-NG');
+}
+
+function sendStoreOrder(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('customer-name').value.trim();
+  const phone = document.getElementById('customer-phone').value.trim();
+  const selected = document.getElementById('order-product').value.split('|');
+
+  const message =
+    `Hello, my name is ${name}. ` +
+    `My WhatsApp number is ${phone}. ` +
+    `I want to order ${selected[0]}. ` +
+    `Price: ₦${Number(selected[1]).toLocaleString('en-NG')}.`;
+
+  alert('Thank you for choosing SAMATHY LOGS! Tap OK to continue to WhatsApp.');
+
+  window.location.href =
+    'https://wa.me/2348107681920?text=' + encodeURIComponent(message);
+}
+
   
 </script>
 </body>
