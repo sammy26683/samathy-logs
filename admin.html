@@ -248,6 +248,13 @@ footer {
         Refresh Products
       </button>
 
+          <div class="panel">
+      <h2>Manage Products</h2>
+
+      <button id="refresh-button" class="secondary">
+        Refresh Products
+      </button>
+
       <div id="product-list">
         Loading products...
       </div>
@@ -308,6 +315,7 @@ async function showDashboard() {
   loginPanel.classList.add('hidden');
   dashboard.classList.remove('hidden');
   await loadAdminProducts();
+  await loadAdminOrders();
 }
 
 document.getElementById('login-form')
@@ -536,8 +544,109 @@ document.getElementById('add-form')
   await loadAdminProducts();
 });
 
-document.getElementById('refresh-button')
-.addEventListener('click', loadAdminProducts);
+async function loadAdminOrders() {
+  const list = document.getElementById('orders-list');
+
+  list.textContent = 'Loading orders...';
+
+  const { data, error } = await supabaseClient
+    .from('store_orders')
+    .select('*')
+    .order('id', { ascending: false });
+
+  if (error) {
+    list.textContent = 'Unable to load orders: ' + error.message;
+    return;
+  }
+
+  list.innerHTML = '';
+
+  if (!data || data.length === 0) {
+    list.textContent = 'No orders found yet.';
+    return;
+  }
+
+  data.forEach(function(order) {
+    const card = document.createElement('div');
+    card.className = 'product';
+
+    const details = document.createElement('p');
+    details.textContent =
+      'Customer: ' + order.customer_name +
+      ' | WhatsApp: ' + order.whatsapp_number +
+      ' | Product: ' + order.product_name +
+      ' | Amount: ' + formatPrice(order.amount) +
+      ' | Date: ' + new Date(order.created_at).toLocaleString();
+
+    const paymentLabel = document.createElement('label');
+    paymentLabel.textContent = 'Payment Status';
+
+    const paymentSelect = document.createElement('select');
+
+    ['Pending', 'Paid'].forEach(function(status) {
+      const option = document.createElement('option');
+      option.value = status;
+      option.textContent = status;
+      paymentSelect.appendChild(option);
+    });
+
+    paymentSelect.value = order.payment_status || 'Pending';
+
+    const orderLabel = document.createElement('label');
+    orderLabel.textContent = 'Order Status';
+
+    const orderSelect = document.createElement('select');
+
+    ['Processing', 'Completed', 'Cancelled'].forEach(function(status) {
+      const option = document.createElement('option');
+      option.value = status;
+      option.textContent = status;
+      orderSelect.appendChild(option);
+    });
+
+    orderSelect.value = order.order_status || 'Processing';
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save Order Changes';
+
+    saveButton.addEventListener('click', async function() {
+      saveButton.disabled = true;
+      saveButton.textContent = 'Saving...';
+
+      const { error } = await supabaseClient
+        .from('store_orders')
+        .update({
+          payment_status: paymentSelect.value,
+          order_status: orderSelect.value
+        })
+        .eq('id', order.id);
+
+      if (error) {
+        alert('Unable to update order: ' + error.message);
+        saveButton.disabled = false;
+        saveButton.textContent = 'Save Order Changes';
+        return;
+      }
+
+      alert('Order updated successfully!');
+      await loadAdminOrders();
+    });
+
+    card.append(
+      details,
+      paymentLabel,
+      paymentSelect,
+      orderLabel,
+      orderSelect,
+      saveButton
+    );
+
+    list.appendChild(card);
+  });
+}
+
+document.getElementById('refresh-orders-button')
+.addEventListener('click', loadAdminOrders);
 
 document.getElementById('logout-button')
 .addEventListener('click', async function() {
