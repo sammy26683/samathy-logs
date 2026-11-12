@@ -261,6 +261,20 @@ footer {
       <p id="manage-message"></p>
     </div>
 
+    <div class="panel">
+      <h2>Customer Orders</h2>
+
+      <button id="refresh-orders-button" class="secondary">
+        Refresh Orders
+      </button>
+
+      <div id="orders-list">
+        Loading orders...
+      </div>
+
+      <p id="orders-message"></p>
+    </div>
+
   </section>
 
 </div>
@@ -644,8 +658,8 @@ async function loadAdminOrders() {
   });
 }
 
-document.getElementById('refresh-orders-button')
-.addEventListener('click', loadAdminOrders);
+document.getElementById('refresh-button')
+.addEventListener('click', loadAdminProducts);
 
 document.getElementById('logout-button')
 .addEventListener('click', async function() {
