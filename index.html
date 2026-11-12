@@ -161,13 +161,12 @@ let storeProducts = [];
 const icons = {
   'UK WhatsApp':'🇬🇧',
   'USA WhatsApp':'🇺🇸',
-  'Telegram':'✈️',
+  'Telegram':'<img src="./telegram.png" alt="Telegram" class="product-icon">',
   'VPN':'🔐',
-  'TextPlus':'📱',
-  'Nextplus':'📞',
-  'Google Voice':'📲'
+  'TextPlus':'<img src="./textplus.png" alt="TextPlus" class="product-icon">',
+  'Nextplus':'<img src="./nextplus.png" alt="Nextplus" class="product-icon">',
+  'Google Voice':'<img src="./google-voice.png" alt="Google Voice" class="product-icon">'
 };
-
 function formatPrice(price){
   return '₦' + Number(price).toLocaleString('en-NG');
 }
