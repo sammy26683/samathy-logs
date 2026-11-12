@@ -102,13 +102,28 @@ Get quality digital products at affordable prices.</p>
   </section>
   
   <section id="register">
-  <h2 class="section-title">Create Customer Account</h2>
+  <h2 class="section-title">Customer Account</h2>
+
   <div class="order-box">
-    <form onsubmit="event.preventDefault(); registerCustomer();">
+    <h2>Create Your Account</h2>
+
+    <form id="register-form">
       <input id="customer-email" type="email" placeholder="Your Email Address" required>
       <input id="customer-password" type="password" placeholder="Create Password (at least 6 characters)" minlength="6" required>
-      <button class="gold-button" type="submit">Register</button>
+      <button class="gold-button" type="submit">Create Account</button>
     </form>
+
+    <hr>
+
+    <h2>Already Have an Account?</h2>
+
+    <form id="login-form">
+      <input id="login-email" type="email" placeholder="Your Email Address" required>
+      <input id="login-password" type="password" placeholder="Your Password" required>
+      <button class="gold-button" type="submit">Sign In</button>
+    </form>
+
+    <p id="account-message"></p>
   </div>
 </section>
 <h2 class="section-title">Our Products</h2>
