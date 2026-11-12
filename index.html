@@ -30,7 +30,19 @@ section{padding:45px 5%}
 .search{display:block;width:100%;max-width:450px;margin:0 auto 28px;padding:14px;border:1px solid #ccd3df;border-radius:10px;font-size:16px}
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
 .product{background:white;border:1px solid #e1e6ef;border-radius:15px;padding:20px 12px;text-align:center;box-shadow:0 4px 14px #14264a12}
-.product-icon{font-size:43px;margin-bottom:10px}
+.product-icon{
+  font-size:43px;
+  margin-bottom:10px;
+  min-height:65px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.product-icon img{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+}
 .product h3{font-size:17px;margin:8px 0}
 .price{font-size:20px;font-weight:bold;margin:12px 0}
 .status{display:inline-block;background:#e0f7e8;color:#087c37;padding:5px 12px;border-radius:20px;font-size:12px}
