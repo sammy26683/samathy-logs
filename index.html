@@ -90,14 +90,23 @@ async function loadProducts() {
     button.textContent = 'Order on WhatsApp';
 
     button.onclick = () => {
-      const message = `Hello, I want to order ${product.name}`;
-      window.open(
-        'https://wa.me/2348107681920?text=' +
-        encodeURIComponent(message),
-        '_blank'
-      );
-    };
+  const customerName = prompt('Please enter your name:');
 
+  if (!customerName || !customerName.trim()) {
+    return;
+  }
+
+  const message =
+    `Hello, my name is ${customerName.trim()}. ` +
+    `I want to order ${product.name}. ` +
+    `Price: ₦${product.price}.`;
+
+  window.open(
+    'https://wa.me/2348107681920?text=' +
+    encodeURIComponent(message),
+    '_blank'
+  );
+};
     card.append(name, price, description, button);
     productList.appendChild(card);
   });
