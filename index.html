@@ -38,7 +38,45 @@ footer{text-align:center;background:#101c35;color:white;padding:20px}
 
 </div>
 </section>
-<section id="contact">
+
+<section id="order">
+  <h2>Place Your Order</h2>
+  <div class="card">
+
+    <form id="order-form" onsubmit="sendStoreOrder(event)">
+
+      <label>Customer Name</label>
+      <input type="text" id="customer-name"
+        placeholder="Enter your full name" required
+        style="width:100%;padding:12px;box-sizing:border-box;margin:10px 0 18px">
+
+      <label>WhatsApp Number</label>
+      <input type="tel" id="customer-phone"
+        placeholder="Enter your WhatsApp number" required
+        style="width:100%;padding:12px;box-sizing:border-box;margin:10px 0 18px">
+
+      <label>Select Product</label>
+      <select id="order-product" onchange="updateOrderPrice()"
+        style="width:100%;padding:12px;box-sizing:border-box;margin:10px 0 18px">
+
+        <option value="UK WhatsApp|3500">UK WhatsApp</option>
+        <option value="USA WhatsApp|4500">USA WhatsApp</option>
+        <option value="Telegram|3500">Telegram</option>
+        <option value="VPN|2000">VPN</option>
+        <option value="TextPlus|3000">TextPlus</option>
+        <option value="Nextplus|3000">Nextplus</option>
+        <option value="Google Voice|10000">Google Voice</option>
+
+      </select>
+
+      <h3 id="order-price">Price: ₦3,500</h3>
+
+      <button type="submit">Continue to WhatsApp</button>
+
+    </form>
+  </div>
+</section>
+
 <h2>Contact SAMATHY LOGS</h2>
 <p>WhatsApp: +2348107681920</p>
 <p>Bank: Moniepoint</p>
