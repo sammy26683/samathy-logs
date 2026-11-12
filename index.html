@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +73,7 @@ section{padding:35px 4%}
 </header>
 
 <div class="hero" id="home">
+  <img src="./samathy-logs-hero-girl.png" alt="SAMATHY LOGS" style="width:350px;max-width:90%;height:auto;float:left;margin:0 20px 15px 0;border-radius:12px;">
 <h1>Welcome to <span>SAMATHY LOGS</span></h1>
 <p>Your Trusted Digital Products Store.<br>
 Get quality digital products at affordable prices.</p>
@@ -159,13 +161,12 @@ let storeProducts = [];
 const icons = {
   'UK WhatsApp':'🇬🇧',
   'USA WhatsApp':'🇺🇸',
-  'Telegram':'✈️',
+  'Telegram':'<img src="https://telegram.org/img/t_logo.png" style="width:55px;height:55px;object-fit:contain;">',
   'VPN':'🔐',
-  'TextPlus':'📱',
-  'Nextplus':'📞',
-  'Google Voice':'📲'
+  'TextPlus':'<img src="https://play-lh.googleusercontent.com/a9kW-OSwOC0_au9tEr6GyVHM5WwugvvR-Yp9ftt9jxrnKr3JCWe9PHgpnzQ5_3RW1lVNhoVh2A8s7qxk7ax-9A=s64" style="width:55px;height:55px;object-fit:contain;">',
+  'Nextplus':'<img src="https://play-lh.googleusercontent.com/G8DGeFCaqXY2D7N4O2dFNXxh9-kOsGXlOVvhBUb594-KZx5HR-nWjChYuJ1D5Ld7DrgYYOEX7woLxFmfn1BzeE0=w240-h480" style="width:55px;height:55px;object-fit:contain;">',
+  'Google Voice':'<img src="https://play-lh.googleusercontent.com/k2dlxKuS46VOCluBwZDz6iGnmslA-ImxlZPjgaAMJvpvmP6aQlrLuQY0hSWhZL49IB9WnqzfAZCE_yCjO7un1g=w240-h480" style="width:55px;height:55px;object-fit:contain;">'
 };
-
 function formatPrice(price){
   return '₦' + Number(price).toLocaleString('en-NG');
 }
