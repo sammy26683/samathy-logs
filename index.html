@@ -202,20 +202,54 @@ const icons = {
   'Nextplus':'<img src="https://play-lh.googleusercontent.com/G8DGeFCaqXY2D7N4O2dFNXxh9-kOsGXlOVvhBUb594-KZx5HR-nWjChYuJ1D5Ld7DrgYYOEX7woLxFmfn1BzeE0=w240-h480" style="width:55px;height:55px;object-fit:contain;">',
   'Google Voice':'<img src="https://play-lh.googleusercontent.com/k2dlxKuS46VOCluBwZDz6iGnmslA-ImxlZPjgaAMJvpvmP6aQlrLuQY0hSWhZL49IB9WnqzfAZCE_yCjO7un1g=w240-h480" style="width:55px;height:55px;object-fit:contain;">'
 };
-  async function registerCustomer(){
+  document.getElementById('register-form').addEventListener('submit', async function(event){
+  event.preventDefault();
+
   const email = document.getElementById('customer-email').value.trim();
   const password = document.getElementById('customer-password').value;
+  const message = document.getElementById('account-message');
 
-  const { data, error } = await supabaseClient.auth.signUp({
+  message.textContent = 'Creating your account...';
+
+  const { error } = await supabaseClient.auth.signUp({
     email: email,
     password: password
   });
 
   if(error){
-    alert(error.message);
+    message.textContent = error.message;
     return;
   }
 
+  message.textContent = 'Account created! Check your email to confirm it, then sign in.';
+});
+  
+document.getElementById('login-form').addEventListener('submit', async function(event){
+  event.preventDefault();
+
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const message = document.getElementById('account-message');
+
+  message.textContent = 'Signing in...';
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if(error){
+    message.textContent = error.message;
+    return;
+  }
+
+  document.getElementById('products').style.display = 'block';
+  document.getElementById('order').style.display = 'block';
+  document.getElementById('register').style.display = 'none';
+
+  alert('Welcome! You can now shop.');
+});
+  
   alert('Registration successful! Please check your email to confirm your account.');
 }
 function formatPrice(price){
