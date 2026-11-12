@@ -397,7 +397,14 @@ I want to complete my order.`;
   updateOrderPrice();
 });
 
-loadProducts();
+supabaseClient.auth.getSession().then(({ data }) => {
+  if (data.session) {
+    document.getElementById('products').style.display = 'block';
+    document.getElementById('order').style.display = 'block';
+    document.getElementById('register').style.display = 'none';
+    loadProducts();
+  }
+});
 </script>
 
 </body>
