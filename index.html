@@ -470,7 +470,8 @@ function updateOrderPrice() {
     'Price: ' + formatPrice(price);
 }
 
-function sendStoreOrder(event) {
+
+async function sendStoreOrder(event) {
   event.preventDefault();
 
   const customerName =
@@ -489,7 +490,26 @@ function sendStoreOrder(event) {
 
   const parts = selected.split('|');
   const productName = parts[0];
-  const productPrice = parts[1];
+  const productPrice = Number(parts[1]);
+
+  const whatsappWindow = window.open('about:blank', '_blank');
+
+  const { data, error } = await supabaseClient
+    .from('store_orders')
+    .insert([{
+      customer_name: customerName,
+      whatsapp_number: customerPhone,
+      product_name: productName,
+      amount: productPrice
+    }])
+    .select();
+
+  if (error) {
+    if (whatsappWindow) whatsappWindow.close();
+    console.error(error);
+    alert('Order could not be saved. Please try again.');
+    return;
+  }
 
   const message =
     'Hello SAMATHY LOGS!%0A%0A' +
@@ -499,11 +519,16 @@ function sendStoreOrder(event) {
     'Product: ' + encodeURIComponent(productName) + '%0A' +
     'Price: ' + encodeURIComponent(formatPrice(productPrice));
 
-  window.open(
-    'https://wa.me/' + STORE_WHATSAPP + '?text=' + message,
-    '_blank'
-  );
+  const whatsappLink =
+    'https://wa.me/' + STORE_WHATSAPP + '?text=' + message;
+
+  if (whatsappWindow) {
+    whatsappWindow.location.href = whatsappLink;
+  } else {
+    alert('Your order was saved successfully. Please open WhatsApp to contact us.');
+  }
 }
+
 
 loadProducts();
 </script>
