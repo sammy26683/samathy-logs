@@ -502,7 +502,6 @@ async function sendStoreOrder(event) {
       product_name: productName,
       amount: productPrice
     }])
-    .select();
 
   if (error) {
     if (whatsappWindow) whatsappWindow.close();
