@@ -2,342 +2,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="Od8r-auSmuChkYTkcapVk24qbexkwCCZWCcfAjNBaZE" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAMATHY LOGS</title>
+<meta name="google-site-verification" content="Od8r-auSmuChkYTkcapVk24qbexkwCCZWCcfAjNBaZE" />
+<title>SAMATHY LOGS | Digital Products Store</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6fa;
-  color: #18233b;
-}
-
-header {
-  background: linear-gradient(135deg, #08152f, #18345e);
-  color: white;
-  text-align: center;
-  padding: 38px 15px;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 32px;
-  letter-spacing: 2px;
-}
-
-header p {
-  color: #e5bd61;
-  margin-bottom: 0;
-}
-
-nav {
-  background: #102447;
-  padding: 15px 10px;
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 8px 12px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-nav a:hover {
-  color: #e5bd61;
-}
-
-.hero {
-  background: #fff;
-  text-align: center;
-  padding: 45px 20px;
-}
-
-.hero h2 {
-  color: #102447;
-  font-size: 28px;
-}
-
-.hero p {
-  color: #606b7c;
-  line-height: 1.7;
-}
-
-.section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 35px 18px;
-}
-
-.section h2 {
-  text-align: center;
-  color: #102447;
-  margin-bottom: 28px;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
-}
-
-.product-card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px 18px;
-  text-align: center;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-  border: 1px solid #e8eaf0;
-  transition: transform 0.2s;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-}
-
-.product-icon {
-  font-size: 42px;
-  margin-bottom: 12px;
-}
-
-.product-card h3 {
-  color: #102447;
-  margin: 8px 0;
-}
-
-.product-card p {
-  color: #697386;
-}
-
-.price {
-  color: #b58a2b;
-  font-size: 22px;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.status {
-  color: #16834a;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.order-button {
-  display: inline-block;
-  background: #c69a35;
-  color: #101c35;
-  padding: 13px 18px;
-  border-radius: 9px;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-.order-button:hover {
-  background: #e2b84f;
-}
-
-.order-section {
-  background: white;
-  max-width: 650px;
-  margin: 30px auto;
-  padding: 28px 22px;
-  border-radius: 16px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-}
-
-.order-section h2 {
-  text-align: center;
-  color: #102447;
-}
-
-label {
-  display: block;
-  margin-top: 16px;
-  margin-bottom: 7px;
-  font-weight: bold;
-}
-
-input, select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #ccd2dc;
-  border-radius: 9px;
-  font-size: 16px;
-}
-
-#order-price {
-  color: #b58a2b;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.contact {
-  background: #102447;
-  color: white;
-  text-align: center;
-  padding: 35px 18px;
-  line-height: 1.8;
-}
-
-.contact h2 {
-  color: #e5bd61;
-}
-
-.contact a {
-  color: #e5bd61;
-}
-
-footer {
-  background: #08152f;
-  color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 14px;
-}
-
-.loading {
-  text-align: center;
-  padding: 25px;
-  color: #697386;
-}
-
-@media(max-width: 600px) {
-  header h1 {
-    font-size: 26px;
-  }
-
-  .hero h2 {
-    font-size: 23px;
-  }
-
-  nav a {
-    margin: 7px;
-    font-size: 14px;
-  }
-
-  .section {
-    padding: 25px 14px;
-  }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#101b35}
+.topbar{background:#06132f;color:white;padding:12px;text-align:center;font-size:13px}
+header{background:#071a3c;color:white;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{font-size:27px;font-weight:bold}
+.logo span{color:#ffc52e}
+nav{display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-weight:bold}
+nav a:hover{color:#ffc52e}
+.hero{background:linear-gradient(120deg,#06132f,#063d83,#06132f);color:white;padding:65px 7%;text-align:center}
+.hero h1{font-size:42px;margin:0 0 15px}
+.hero h1 span{color:#ffc52e}
+.hero p{font-size:19px;line-height:1.6}
+.hero a,.gold-button{display:inline-block;background:linear-gradient(135deg,#ffe071,#f5a900);color:#111;padding:15px 28px;border-radius:30px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.trust{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;background:#102a55;color:white;padding:17px}
+section{padding:45px 5%}
+.section-title{text-align:center;font-size:30px;margin:0 0 12px}
+.subtitle{text-align:center;color:#68748a;margin-bottom:30px}
+.search{display:block;width:100%;max-width:450px;margin:0 auto 28px;padding:14px;border:1px solid #ccd3df;border-radius:10px;font-size:16px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.product{background:white;border:1px solid #e1e6ef;border-radius:15px;padding:20px 12px;text-align:center;box-shadow:0 4px 14px #14264a12}
+.product-icon{font-size:43px;margin-bottom:10px}
+.product h3{font-size:17px;margin:8px 0}
+.price{font-size:20px;font-weight:bold;margin:12px 0}
+.status{display:inline-block;background:#e0f7e8;color:#087c37;padding:5px 12px;border-radius:20px;font-size:12px}
+.product button{display:block;width:100%;margin-top:14px}
+.message{text-align:center;padding:15px;color:#536078}
+.order-area{background:#071a3c;color:white}
+.order-box{max-width:650px;margin:auto;background:white;color:#111;border-radius:16px;padding:25px}
+.order-box h2{text-align:center;color:#10264e}
+.order-box input,.order-box select{width:100%;padding:14px;margin:9px 0;border:1px solid #ccd3df;border-radius:8px;font-size:16px}
+.order-box button{width:100%;margin-top:12px}
+#order-message{text-align:center;margin-top:12px;color:#18345e}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.info-card{background:white;padding:25px;border-radius:14px;box-shadow:0 4px 14px #14264a12}
+.info-card h3{color:#b47a00}
+footer{background:#06132f;color:white;text-align:center;padding:25px}
+@media(max-width:600px){
+header{justify-content:center;text-align:center}
+nav{justify-content:center}
+.hero{padding:45px 5%}
+.hero h1{font-size:32px}
+section{padding:35px 4%}
 }
 </style>
 </head>
 
 <body>
 
+<div class="topbar">
+🛡️ Trusted & Secure &nbsp; ⚡ Instant Delivery &nbsp; 📞 WhatsApp Support
+</div>
+
 <header>
-  <h1>SAMATHY LOGS</h1>
-  <p>Your Trusted Digital Products Store</p>
+<div class="logo">🛒 SAMATHY <span>LOGS</span></div>
+<nav>
+<a href="#home">Home</a>
+<a href="#products">Products</a>
+<a href="#order">Place Order</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#products">Products</a>
-  <a href="#order">Place Order</a>
-  <a href="#contact">Contact</a>
-</nav>
+<div class="hero" id="home">
+<h1>Welcome to <span>SAMATHY LOGS</span></h1>
+<p>Your Trusted Digital Products Store.<br>
+Get quality digital products at affordable prices.</p>
+<a href="#products">Explore Products →</a>
+</div>
 
-<section class="hero" id="home">
-  <h2>Welcome to SAMATHY LOGS</h2>
-  <p>
-    Get quality digital products at affordable prices.
-    Browse our products and order easily through WhatsApp.
-  </p>
-  <a href="#products" class="order-button" style="width:auto;display:inline-block;">
-    Explore Products
-  </a>
+<div class="trust">
+<span>✅ Reliable Products</span>
+<span>⚡ Fast Delivery</span>
+<span>💰 Affordable Prices</span>
+<span>📞 Customer Support</span>
+</div>
+
+<section id="products">
+<h2 class="section-title">Our Products</h2>
+<p class="subtitle">Choose from our range of digital products</p>
+
+<input class="search" id="search" type="text" placeholder="Search for a product...">
+
+<div class="products" id="product-list">
+<p class="message">Loading products...</p>
+</div>
 </section>
 
-<section class="section" id="products">
-  <h2>Our Products</h2>
-
-  <div id="product-list" class="product-grid">
-    <div class="loading">Loading products...</div>
-  </div>
+<section class="order-area" id="order">
+<div class="order-box">
+<h2>🛒 Place Your Order</h2>
+<form id="order-form">
+<input id="customer-name" type="text" placeholder="Your Full Name" required>
+<input id="customer-phone" type="tel" placeholder="Your WhatsApp Number" required>
+<select id="order-product" required>
+<option value="">Loading products...</option>
+</select>
+<p id="order-price" style="text-align:center;font-weight:bold"></p>
+<button class="gold-button" type="submit">Send Order on WhatsApp</button>
+</form>
+<p id="order-message"></p>
+</div>
 </section>
 
-<section class="section" id="order">
-  <div class="order-section">
-    <h2>Place Your Order</h2>
+<section id="contact">
+<h2 class="section-title">Why Choose SAMATHY LOGS?</h2>
+<p class="subtitle">Your satisfaction is our priority!</p>
 
-    <form onsubmit="sendStoreOrder(event)">
+<div class="info-grid">
+<div class="info-card">
+<h3>📞 Contact Us</h3>
+<p>Have questions? Contact us on WhatsApp.</p>
+<strong>+234 810 768 1920</strong>
+</div>
 
-      <label for="customer-name">Your Name</label>
-      <input
-        type="text"
-        id="customer-name"
-        placeholder="Enter your name"
-        required
-      >
+<div class="info-card">
+<h3>🏦 Payment Details</h3>
+<p>Bank: Moniepoint</p>
+<p>Account Name: Samuel Damola Usman</p>
+<p>Account Number: 8107681920</p>
+<p>Currency: NGN</p>
+</div>
 
-      <label for="customer-phone">Your WhatsApp Number</label>
-      <input
-        type="tel"
-        id="customer-phone"
-        placeholder="Enter your WhatsApp number"
-        required
-      >
-
-      <label for="order-product">Select Product</label>
-      <select id="order-product" onchange="updateOrderPrice()" required>
-        <option value="">Choose a product</option>
-        <option value="UK WhatsApp|3500">UK WhatsApp</option>
-        <option value="USA WhatsApp|4500">USA WhatsApp</option>
-        <option value="Telegram|3500">Telegram</option>
-        <option value="VPN|2000">VPN</option>
-        <option value="TextPlus|3000">TextPlus</option>
-        <option value="Nextplus|3000">Nextplus</option>
-        <option value="Google Voice|10000">Google Voice</option>
-      </select>
-
-      <p id="order-price">Price: Select a product</p>
-
-      <button type="submit" class="order-button">
-        Send Order on WhatsApp
-      </button>
-
-    </form>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <h2>Contact Us</h2>
-
-  <p>Have questions? Contact us on WhatsApp.</p>
-
-  <p>
-    WhatsApp:
-    <a href="https://wa.me/2348107681920">
-      +234 810 768 1920
-    </a>
-  </p>
-
-  <h3>Payment Details</h3>
-  <p>Bank: Moniepoint</p>
-  <p>Account Name: Samuel Damola Usman</p>
-  <p>Account Number: 8107681920</p>
-  <p>Currency: NGN</p>
+<div class="info-card">
+<h3>⭐ Our Promise</h3>
+<p>Reliable products, affordable prices and customer support.</p>
+</div>
+</div>
 </section>
 
 <footer>
-  © 2026 SAMATHY LOGS. All Rights Reserved.
+<p>© 2026 SAMATHY LOGS. All Rights Reserved.</p>
+<p>Shop Smart • Shop Safe • Shop with SAMATHY LOGS</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 const SUPABASE_URL = 'https://pccfbqcorbrqwlxkprva.supabase.co';
-
 const SUPABASE_KEY = 'sb_publishable_WhFVO642KJuY7WkrVtEKwg_NP7E4Ffq';
 
 const supabaseClient = window.supabase.createClient(
@@ -346,192 +155,166 @@ const supabaseClient = window.supabase.createClient(
 );
 
 const STORE_WHATSAPP = '2348107681920';
+let storeProducts = [];
 
-function formatPrice(price) {
+const icons = {
+  'UK WhatsApp':'🇬🇧',
+  'USA WhatsApp':'🇺🇸',
+  'Telegram':'✈️',
+  'VPN':'🔐',
+  'TextPlus':'📱',
+  'Nextplus':'📞',
+  'Google Voice':'📲'
+};
+
+function formatPrice(price){
   return '₦' + Number(price).toLocaleString('en-NG');
 }
 
-function getProductIcon(name) {
-  const icons = {
-    'UK WhatsApp': '🇬🇧',
-    'USA WhatsApp': '🇺🇸',
-    'Telegram': '✈️',
-    'VPN': '🔒',
-    'TextPlus': '📱',
-    'Nextplus': '📞',
-    'Google Voice': '☎️'
-  };
+function renderProducts(){
+  const list = document.getElementById('product-list');
+  const search = document.getElementById('search').value.toLowerCase();
 
-  return icons[name] || '⭐';
+  const filtered = storeProducts.filter(product =>
+    product.name.toLowerCase().includes(search) ||
+    (product.description || '').toLowerCase().includes(search)
+  );
+
+  if(!filtered.length){
+    list.innerHTML = '<p class="message">No products found.</p>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(product => `
+    <div class="product">
+      <div class="product-icon">${icons[product.name] || '📦'}</div>
+      <h3>${escapeHTML(product.name)}</h3>
+      <div class="price">${formatPrice(product.price)}</div>
+      <span class="status">Available</span>
+      <button class="gold-button" onclick="orderOnWhatsApp(${Number(product.id)})">
+        Order Now
+      </button>
+    </div>
+  `).join('');
 }
 
-async function loadProducts() {
-  const productList = document.getElementById('product-list');
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  })[char]);
+}
 
-  productList.innerHTML =
-    '<div class="loading">Loading products...</div>';
+function populateOrderProducts(){
+  const select = document.getElementById('order-product');
+
+  select.innerHTML = '<option value="">Select a product</option>' +
+    storeProducts.map(product => `
+      <option value="${Number(product.id)}">
+        ${escapeHTML(product.name)} - ${formatPrice(product.price)}
+      </option>
+    `).join('');
+
+  updateOrderPrice();
+}
+
+function updateOrderPrice(){
+  const id = document.getElementById('order-product').value;
+  const product = storeProducts.find(item => String(item.id) === id);
+
+  document.getElementById('order-price').textContent =
+    product ? 'Price: ' + formatPrice(product.price) : '';
+}
+
+async function loadProducts(){
+  const list = document.getElementById('product-list');
 
   const { data, error } = await supabaseClient
     .from('store_products')
     .select('*')
     .eq('status', 'Available')
-    .order('id', { ascending: true });
+    .order('id');
 
-  if (error) {
-    productList.innerHTML =
-      '<p class="loading">Unable to load products. Please try again later.</p>';
-
-    console.error('Supabase error:', error);
+  if(error){
+    list.innerHTML = '<p class="message">Unable to load products. Please refresh the page.</p>';
     return;
   }
 
-  if (!data || data.length === 0) {
-    productList.innerHTML =
-      '<p class="loading">No products are available right now.</p>';
-    return;
-  }
-
-  productList.innerHTML = '';
-
-  data.forEach(function(product) {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-
-    const icon = document.createElement('div');
-    icon.className = 'product-icon';
-    icon.textContent = getProductIcon(product.name);
-
-    const name = document.createElement('h3');
-    name.textContent = product.name;
-
-    const description = document.createElement('p');
-    description.textContent = product.description || 'Quality digital product';
-
-    const price = document.createElement('div');
-    price.className = 'price';
-    price.textContent = formatPrice(product.price);
-
-    const status = document.createElement('div');
-    status.className = 'status';
-    status.textContent = product.status || 'Available';
-
-    const button = document.createElement('button');
-    button.className = 'order-button';
-    button.textContent = 'Order on WhatsApp';
-
-    button.addEventListener('click', function() {
-      const customerName = prompt('Please enter your name:');
-
-      if (!customerName || !customerName.trim()) {
-        return;
-      }
-
-      const message =
-        'Hello SAMATHY LOGS!%0A' +
-        'My name: ' + encodeURIComponent(customerName.trim()) + '%0A' +
-        'Product: ' + encodeURIComponent(product.name) + '%0A' +
-        'Price: ' + encodeURIComponent(formatPrice(product.price)) +
-        '%0A%0AI want to place an order.';
-
-      window.open(
-        'https://wa.me/' + STORE_WHATSAPP + '?text=' + message,
-        '_blank'
-      );
-    });
-
-    card.append(
-      icon,
-      name,
-      description,
-      price,
-      status,
-      button
-    );
-
-    productList.appendChild(card);
-  });
+  storeProducts = data || [];
+  renderProducts();
+  populateOrderProducts();
 }
 
-function updateOrderPrice() {
-  const selected =
-    document.getElementById('order-product').value;
+function orderOnWhatsApp(id){
+  const product = storeProducts.find(item => Number(item.id) === id);
+  if(!product) return;
 
-  const priceDisplay =
-    document.getElementById('order-price');
-
-  if (!selected) {
-    priceDisplay.textContent = 'Price: Select a product';
-    return;
-  }
-
-  const parts = selected.split('|');
-  const price = parts[1];
-
-  priceDisplay.textContent =
-    'Price: ' + formatPrice(price);
+  const message = `Hello SAMATHY LOGS, I want to order ${product.name} for ${formatPrice(product.price)}.`;
+  window.open(
+    'https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(message),
+    '_blank'
+  );
 }
 
+document.getElementById('search').addEventListener('input', renderProducts);
 
-async function sendStoreOrder(event) {
+document.getElementById('order-product').addEventListener('change', updateOrderPrice);
+
+document.getElementById('order-form').addEventListener('submit', async function(event){
   event.preventDefault();
 
-  const customerName =
-    document.getElementById('customer-name').value.trim();
+  const name = document.getElementById('customer-name').value.trim();
+  const phone = document.getElementById('customer-phone').value.trim();
+  const productId = document.getElementById('order-product').value;
+  const product = storeProducts.find(item => String(item.id) === productId);
+  const message = document.getElementById('order-message');
 
-  const customerPhone =
-    document.getElementById('customer-phone').value.trim();
-
-  const selected =
-    document.getElementById('order-product').value;
-
-  if (!customerName || !customerPhone || !selected) {
-    alert('Please fill in all the fields.');
+  if(!product){
+    message.textContent = 'Please select a product.';
     return;
   }
 
-  const parts = selected.split('|');
-  const productName = parts[0];
-  const productPrice = Number(parts[1]);
+  message.textContent = 'Submitting your order...';
 
-  const whatsappWindow = window.open('about:blank', '_blank');
-
-  const { data, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from('store_orders')
     .insert([{
-      customer_name: customerName,
-      whatsapp_number: customerPhone,
-      product_name: productName,
-      amount: productPrice
-    }])
+      customer_name: name,
+      whatsapp_number: phone,
+      product_name: product.name,
+      amount: product.price
+    }]);
 
-  if (error) {
-    if (whatsappWindow) whatsappWindow.close();
-    console.error(error);
-    alert('Order could not be saved. Please try again.');
+  if(error){
+    message.textContent = 'Order could not be saved. Please try again.';
     return;
   }
 
-  const message =
-    'Hello SAMATHY LOGS!%0A%0A' +
-    'I want to place an order.%0A' +
-    'Name: ' + encodeURIComponent(customerName) + '%0A' +
-    'My WhatsApp Number: ' + encodeURIComponent(customerPhone) + '%0A' +
-    'Product: ' + encodeURIComponent(productName) + '%0A' +
-    'Price: ' + encodeURIComponent(formatPrice(productPrice));
+  message.textContent = 'Order saved! Opening WhatsApp...';
 
-  const whatsappLink =
-    'https://wa.me/' + STORE_WHATSAPP + '?text=' + message;
+  const text = `Hello SAMATHY LOGS!
+Name: ${name}
+WhatsApp: ${phone}
+Product: ${product.name}
+Amount: ${formatPrice(product.price)}
 
-  if (whatsappWindow) {
-    whatsappWindow.location.href = whatsappLink;
-  } else {
-    alert('Your order was saved successfully. Please open WhatsApp to contact us.');
-  }
-}
+I want to complete my order.`;
 
+  window.open(
+    'https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(text),
+    '_blank'
+  );
+
+  this.reset();
+  updateOrderPrice();
+});
 
 loadProducts();
 </script>
 
 </body>
 </html>
+
