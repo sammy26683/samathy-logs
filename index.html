@@ -52,10 +52,9 @@ footer{text-align:center;background:#101c35;color:white;padding:20px}
   
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
 const supabaseClient = window.supabase.createClient(
   'https://pccfbqcorbrqwlxkprva.supabase.co',
-    'sb_publishable_WhFVO642KJuY7WkrVtEKwg_NP7E4Ffq'
+  'sb_publishable_WhFVO642KJuY7WkrVtEKwg_NP7E4Ffq'
 );
 
 async function loadProducts() {
@@ -64,10 +63,11 @@ async function loadProducts() {
   const { data, error } = await supabaseClient
     .from('store_products')
     .select('*')
+    .eq('status', 'Available');
 
   if (error) {
     productList.textContent = 'Could not load products. Please try again.';
-    console.error(error);alert(JSON.stringify(error));
+    console.error(error);
     return;
   }
 
@@ -75,27 +75,36 @@ async function loadProducts() {
 
   data.forEach(product => {
     const card = document.createElement('div');
+    card.className = 'card';
+
     const name = document.createElement('h3');
     const price = document.createElement('p');
     const description = document.createElement('p');
 
-    name.textContent = product.service_type || product.country || 'Product';
+    name.textContent = product.name;
     price.textContent = 'Price: ₦' + product.price;
     description.textContent = product.description || '';
 
     const button = document.createElement('button');
-button.textContent = 'Order on WhatsApp';
+    button.textContent = 'Order on WhatsApp';
 
-button.onclick = () => {
-  const message = `Hello, I want to order ${product.name}`;
-  window.open('https://wa.me/2348107681920?text=' + encodeURIComponent(message), '_blank');
-};
+    button.onclick = () => {
+      const message = `Hello, I want to order ${product.name}`;
+      window.open(
+        'https://wa.me/2348107681920?text=' +
+        encodeURIComponent(message),
+        '_blank'
+      );
+    };
 
-card.append(name, price, description, button);
-productList.appendChild(card);
+    card.append(name, price, description, button);
+    productList.appendChild(card);
+  });
 }
 
 loadProducts();
+
+  
 </script>
 </body>
 </html>
