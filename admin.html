@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAMATHY LOGS Admin</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f4f6fa;
+  color: #18233b;
+}
+
+header {
+  background: linear-gradient(135deg, #08152f, #18345e);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  color: #e5bd61;
+}
+
+.container {
+  max-width: 750px;
+  margin: auto;
+}
+
+.panel {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #102447;
+}
+
+label {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccd2dc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 13px 17px;
+  border: none;
+  border-radius: 8px;
+  background: #c69a35;
+  color: #101c35;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #e2b84f;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.full-button {
+  width: 100%;
+}
+
+.secondary {
+  background: #102447;
+  color: white;
+}
+
+.delete {
+  background: #b42318;
+  color: white;
+}
+
+.product {
+  border: 1px solid #e3e7ef;
+  padding: 17px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+
+.product h3 {
+  margin-top: 0;
+  color: #102447;
+}
+
+.product p {
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none;
+}
+
+#message {
+  margin-top: 14px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  color: #697386;
+  padding: 20px;
+}
+
+@media(max-width: 500px) {
+  body {
+    padding: 12px;
+  }
+
+  .panel {
+    padding: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>SAMATHY LOGS</h1>
+  <p>Private Admin Dashboard</p>
+</header>
+
+<div class="container">
+
+  <section class="panel" id="login-panel">
+    <h2>Admin Login</h2>
+
+    <form id="login-form">
+
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your admin email"
+        required
+      >
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        required
+      >
+
+      <button type="submit" class="full-button">
+        Login to Dashboard
+      </button>
+
+    </form>
+
+    <p id="login-message"></p>
+  </section>
+
+  <section id="dashboard" class="hidden">
+
+    <div class="panel">
+      <h2>Welcome, Admin!</h2>
+      <p>Manage your SAMATHY LOGS products here.</p>
+
+      <button id="logout-button" class="secondary">
+        Logout
+      </button>
+    </div>
+
+    <div class="panel">
+      <h2>Add New Product</h2>
+
+      <form id="add-form">
+
+        <label for="new-name">Product Name</label>
+        <input
+          type="text"
+          id="new-name"
+          placeholder="Enter product name"
+          required
+        >
+
+        <label for="new-price">Product Price (NGN)</label>
+        <input
+          type="number"
+          id="new-price"
+          min="0"
+          step="0.01"
+          placeholder="Enter price"
+          required
+        >
+
+        <label for="new-description">Description</label>
+        <input
+          type="text"
+          id="new-description"
+          placeholder="Enter product description"
+        >
+
+        <label for="new-status">Availability</label>
+        <select id="new-status">
+          <option value="Available">Available</option>
+          <option value="Unavailable">Unavailable</option>
+        </select>
+
+        <button type="submit" class="full-button">
+          Add Product
+        </button>
+
+      </form>
+
+      <p id="add-message"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Manage Products</h2>
+
+      <button id="refresh-button" class="secondary">
+        Refresh Products
+      </button>
+
+      <div id="product-list">
+        Loading products...
+      </div>
+
+      <p id="manage-message"></p>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  © 2026 SAMATHY LOGS
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL =
+  'https://pccfbqcorbrqwlxkprva.supabase.co';
+
+const SUPABASE_KEY =
+  'sb_publishable_WhFVO642KJuY7WkrVtEKwg_NP7E4Ffq';
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const loginPanel = document.getElementById('login-panel');
+const dashboard = document.getElementById('dashboard');
+
+function showMessage(id, message, color) {
+  const element = document.getElementById(id);
+  element.textContent = message;
+  element.style.color = color || '#18233b';
+}
+
+function formatPrice(price) {
+  return '₦' + Number(price).toLocaleString('en-NG');
+}
+
+async function checkLogin() {
+  const { data, error } =
+    await supabaseClient.auth.getSession();
+
+  if (error) {
+    showMessage('login-message', error.message, 'red');
+    return;
+  }
+
+  if (data.session) {
+    await showDashboard();
+  }
+}
+
+async function showDashboard() {
+  loginPanel.classList.add('hidden');
+  dashboard.classList.remove('hidden');
+  await loadAdminProducts();
+}
+
+document.getElementById('login-form')
+.addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const email =
+    document.getElementById('email').value.trim();
+
+  const password =
+    document.getElementById('password').value;
+
+  showMessage('login-message', 'Logging in...', '#102447');
+
+  const { error } =
+    await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+  if (error) {
+    showMessage('login-message', error.message, 'red');
+    return;
+  }
+
+  document.getElementById('password').value = '';
+
+  await showDashboard();
+});
+
+async function loadAdminProducts() {
+  const list = document.getElementById('product-list');
+
+  list.textContent = 'Loading products...';
+
+  const { data, error } = await supabaseClient
+    .from('store_products')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    list.textContent = 'Unable to load products: ' + error.message;
+    return;
+  }
+
+  list.innerHTML = '';
+
+  if (!data || data.length === 0) {
+    list.textContent = 'No products found.';
+    return;
+  }
+
+  data.forEach(function(product) {
+    const card = document.createElement('div');
+    card.className = 'product';
+
+    const name = document.createElement('h3');
+    name.textContent = product.name;
+
+    const price = document.createElement('p');
+    price.textContent = 'Price: ' + formatPrice(product.price);
+
+    const description = document.createElement('p');
+    description.textContent =
+      'Description: ' + (product.description || 'None');
+
+    const status = document.createElement('p');
+    status.textContent = 'Status: ' + product.status;
+
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit Product';
+
+    editButton.addEventListener('click', function() {
+      editProduct(product);
+    });
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete Product';
+    deleteButton.className = 'delete';
+
+    deleteButton.addEventListener('click', function() {
+      deleteProduct(product);
+    });
+
+    card.append(
+      name,
+      price,
+      description,
+      status,
+      editButton,
+      document.createTextNode(' '),
+      deleteButton
+    );
+
+    list.appendChild(card);
+  });
+}
+
+async function editProduct(product) {
+  const newName = prompt(
+    'Enter product name:',
+    product.name
+  );
+
+  if (newName === null || !newName.trim()) return;
+
+  const newPrice = prompt(
+    'Enter product price:',
+    product.price
+  );
+
+  if (newPrice === null || newPrice.trim() === '') return;
+
+  const priceNumber = Number(newPrice);
+
+  if (!Number.isFinite(priceNumber) || priceNumber < 0) {
+    alert('Please enter a valid price.');
+    return;
+  }
+
+  const newDescription = prompt(
+    'Enter product description:',
+    product.description || ''
+  );
+
+  if (newDescription === null) return;
+
+  const newStatus = prompt(
+    'Enter Available or Unavailable:',
+    product.status || 'Available'
+  );
+
+  if (newStatus === null) return;
+
+  const normalizedStatus = newStatus.trim().toLowerCase();
+
+  if (
+    normalizedStatus !== 'available' &&
+    normalizedStatus !== 'unavailable'
+  ) {
+    alert('Status must be Available or Unavailable.');
+    return;
+  }
+
+  const { error } = await supabaseClient
+    .from('store_products')
+    .update({
+      name: newName.trim(),
+      price: priceNumber,
+      description: newDescription.trim(),
+      status: normalizedStatus === 'available'
+        ? 'Available'
+        : 'Unavailable'
+    })
+    .eq('id', product.id);
+
+  if (error) {
+    showMessage('manage-message', error.message, 'red');
+    return;
+  }
+
+  showMessage('manage-message', 'Product updated successfully!', 'green');
+  await loadAdminProducts();
+}
+
+async function deleteProduct(product) {
+  const confirmed = confirm(
+    'Are you sure you want to delete ' + product.name + '?'
+  );
+
+  if (!confirmed) return;
+
+  const { error } = await supabaseClient
+    .from('store_products')
+    .delete()
+    .eq('id', product.id);
+
+  if (error) {
+    showMessage('manage-message', error.message, 'red');
+    return;
+  }
+
+  showMessage('manage-message', 'Product deleted successfully!', 'green');
+  await loadAdminProducts();
+}
+
+document.getElementById('add-form')
+.addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const name =
+    document.getElementById('new-name').value.trim();
+
+  const price =
+    Number(document.getElementById('new-price').value);
+
+  const description =
+    document.getElementById('new-description').value.trim();
+
+  const status =
+    document.getElementById('new-status').value;
+
+  if (!name || !Number.isFinite(price) || price < 0) {
+    showMessage('add-message', 'Enter a valid product name and price.', 'red');
+    return;
+  }
+
+  const { error } = await supabaseClient
+    .from('store_products')
+    .insert([{
+      name: name,
+      price: price,
+      description: description,
+      status: status
+    }]);
+
+  if (error) {
+    showMessage('add-message', error.message, 'red');
+    return;
+  }
+
+  document.getElementById('add-form').reset();
+
+  showMessage('add-message', 'Product added successfully!', 'green');
+
+  await loadAdminProducts();
+});
+
+document.getElementById('refresh-button')
+.addEventListener('click', loadAdminProducts);
+
+document.getElementById('logout-button')
+.addEventListener('click', async function() {
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  dashboard.classList.add('hidden');
+  loginPanel.classList.remove('hidden');
+  document.getElementById('login-form').reset();
+});
+
+checkLogin();
+</script>
+
+</body>
+</html>
