@@ -402,6 +402,7 @@ document.getElementById('forgot-password').addEventListener('click', async funct
     : 'Password reset email sent. Please check your inbox.';
 });
 
+
 document.getElementById('customer-login').addEventListener('click', async function() {
   const email = document.getElementById('customer-email').value.trim();
   const password = document.getElementById('customer-password').value;
@@ -416,11 +417,11 @@ document.getElementById('customer-login').addEventListener('click', async functi
     return;
   }
 
-    storeContent.style.display = 'none';
-document.getElementById('customer-dashboard').style.display = 'none';
-authBox.style.display = 'block';
-authMessage.textContent = 'You have logged out successfully.';
+  authBox.style.display = 'none';
+  storeContent.style.display = 'none';
+  document.getElementById('customer-dashboard').style.display = 'block';
 });
+
   
 async function checkCustomerSession() {
   const { data: { session } } = await supabaseClient.auth.getSession();
