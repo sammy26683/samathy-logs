@@ -209,8 +209,16 @@ const SUPABASE_KEY = 'sb_publishable_WhFVO642KJuY7WkrVtEKwg_NP7E4Ffq';
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
-  SUPABASE_KEY
+  SUPABASE_KEY,
+  {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
 );
+  
 const authBox = document.getElementById('customer-auth');
 const authMessage = document.getElementById('customer-auth-message');
   const storeContent = document.getElementById('store-content');
