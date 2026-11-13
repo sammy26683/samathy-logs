@@ -416,9 +416,10 @@ document.getElementById('customer-login').addEventListener('click', async functi
     return;
   }
 
-    authBox.style.display = 'none';
-  storeContent.style.display = 'none';
-  document.getElementById('customer-dashboard').style.display = 'block';
+    storeContent.style.display = 'none';
+document.getElementById('customer-dashboard').style.display = 'none';
+authBox.style.display = 'block';
+authMessage.textContent = 'You have logged out successfully.';
 });
   
 async function checkCustomerSession() {
