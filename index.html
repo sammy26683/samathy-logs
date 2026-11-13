@@ -223,6 +223,27 @@ document.getElementById('customer-signup').addEventListener('click', async funct
     : 'Account created! Please check your email to confirm.';
 });
 
+document.getElementById('forgot-password').addEventListener('click', async function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('customer-email').value.trim();
+
+  if (!email) {
+    authMessage.textContent = 'Please enter your email address first.';
+    return;
+  }
+
+  authMessage.textContent = 'Sending password reset email...';
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://sammy26683.github.io/samathy-logs/'
+  });
+
+  authMessage.textContent = error
+    ? error.message
+    : 'Password reset email sent. Please check your inbox.';
+});
+
 document.getElementById('customer-login').addEventListener('click', async function() {
   const email = document.getElementById('customer-email').value.trim();
   const password = document.getElementById('customer-password').value;
