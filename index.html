@@ -53,11 +53,50 @@ nav{justify-content:center}
 .hero h1{font-size:32px}
 section{padding:35px 4%}
 }
+  #customer-auth {
+  max-width: 430px;
+  margin: 60px auto;
+  padding: 30px 22px;
+  background: white;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px #14264a20;
+}
+
+#customer-auth h2 {
+  color: #071a3c;
+}
+
+#customer-auth input,
+#customer-auth button {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+}
 </style>
 </head>
 
 <body>
 
+  <div id="customer-auth">
+  <h2>Welcome to SAMATHY LOGS</h2>
+  <p>Please log in or create an account to continue.</p>
+
+  <input id="customer-email" type="email" placeholder="Email Address">
+
+  <input id="customer-password" type="password" placeholder="Password">
+
+  <button id="customer-login">Login</button>
+
+  <button id="customer-signup">Create Account</button>
+
+  <p id="customer-auth-message"></p>
+</div>
+  
+<div id="store-content" style="display:none;">
+  
 <div class="topbar">
 🛡️ Trusted & Secure &nbsp; ⚡ Instant Delivery &nbsp; 📞 WhatsApp Support
 </div>
@@ -144,7 +183,9 @@ Get quality digital products at affordable prices.</p>
 <p>© 2026 SAMATHY LOGS. All Rights Reserved.</p>
 <p>Shop Smart • Shop Safe • Shop with SAMATHY LOGS</p>
 </footer>
-
+  
+</div>
+  
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = 'https://pccfbqcorbrqwlxkprva.supabase.co';
@@ -154,7 +195,48 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+const authBox = document.getElementById('customer-auth');
+const authMessage = document.getElementById('customer-auth-message');
+  const storeContent = document.getElementById('store-content');
 
+document.getElementById('customer-signup').addEventListener('click', async function() {
+  const email = document.getElementById('customer-email').value.trim();
+  const password = document.getElementById('customer-password').value;
+
+  authMessage.textContent = 'Creating account...';
+
+  const { error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      emailRedirectTo: 'https://sammy26683.github.io/samathy-logs/'
+    }
+  });
+
+  authMessage.textContent = error
+    ? error.message
+    : 'Account created! Please check your email to confirm.';
+});
+
+document.getElementById('customer-login').addEventListener('click', async function() {
+  const email = document.getElementById('customer-email').value.trim();
+  const password = document.getElementById('customer-password').value;
+
+  authBox.style.display = 'none';
+storeContent.style.display = 'block';
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    authMessage.textContent = error.message;
+    return;
+  }
+
+  authMessage.textContent = 'Login successful!';
+});
 const STORE_WHATSAPP = '2348107681920';
 let storeProducts = [];
 
