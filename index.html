@@ -415,8 +415,9 @@ document.getElementById('customer-login').addEventListener('click', async functi
     return;
   }
 
-  authBox.style.display = 'none';
-  storeContent.style.display = 'block';
+    authBox.style.display = 'none';
+  storeContent.style.display = 'none';
+  document.getElementById('customer-dashboard').style.display = 'block';
 });
 
 async function checkCustomerSession() {
