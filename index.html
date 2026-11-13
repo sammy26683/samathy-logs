@@ -222,9 +222,6 @@ document.getElementById('customer-login').addEventListener('click', async functi
   const email = document.getElementById('customer-email').value.trim();
   const password = document.getElementById('customer-password').value;
 
-  authBox.style.display = 'none';
-storeContent.style.display = 'block';
-
   const { error } = await supabaseClient.auth.signInWithPassword({
     email: email,
     password: password
@@ -235,8 +232,24 @@ storeContent.style.display = 'block';
     return;
   }
 
-  authMessage.textContent = 'Login successful!';
+  authBox.style.display = 'none';
+  storeContent.style.display = 'block';
 });
+
+async function checkCustomerSession() {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+
+  if (session) {
+    authBox.style.display = 'none';
+    storeContent.style.display = 'block';
+  } else {
+    authBox.style.display = 'block';
+    storeContent.style.display = 'none';
+  }
+}
+
+checkCustomerSession();
+
 const STORE_WHATSAPP = '2348107681920';
 let storeProducts = [];
 
