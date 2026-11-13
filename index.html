@@ -218,8 +218,9 @@ body:has(#customer-auth:not([style*="display: none"])) {
     <p>Wallet coming soon</p>
   </div>
 
-  <div class="dashboard-item" onclick="document.getElementById('customer-dashboard').style.display='none'; document.getElementById('store-content').style.display='block';">
-    <div class="dashboard-item" onclick="document.getElementById('store-content').scrollIntoView()">
+  <div class="dashboard-grid">
+    <div class="dashboard-item">
+      
       <h3>🛍️ Buy Products</h3>
       <p>Browse our digital products</p>
     </div>
@@ -419,16 +420,18 @@ document.getElementById('customer-login').addEventListener('click', async functi
   storeContent.style.display = 'none';
   document.getElementById('customer-dashboard').style.display = 'block';
 });
-
+  
 async function checkCustomerSession() {
   const { data: { session } } = await supabaseClient.auth.getSession();
 
   if (session) {
     authBox.style.display = 'none';
-    storeContent.style.display = 'block';
+    storeContent.style.display = 'none';
+    document.getElementById('customer-dashboard').style.display = 'block';
   } else {
     authBox.style.display = 'block';
     storeContent.style.display = 'none';
+    document.getElementById('customer-dashboard').style.display = 'none';
   }
 }
 
