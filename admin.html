@@ -309,7 +309,6 @@ function showMessage(id, message, color) {
 function formatPrice(price) {
   return '₦' + Number(price).toLocaleString('en-NG');
 }
-
 async function checkLogin() {
   const { data, error } =
     await supabaseClient.auth.getSession();
@@ -319,8 +318,25 @@ async function checkLogin() {
     return;
   }
 
-  if (data.session) {
-    await showDashboard();
+  if (!data.session) return;
+
+  const { data: admin, error: adminError } = await supabaseClient
+    .from('store_admins')
+    .select('user_id')
+    .eq('user_id', data.session.user.id)
+    .maybeSingle();
+
+  if (adminError || !admin) {
+    await supabaseClient.auth.signOut();
+    loginPanel.classList.remove('hidden');
+    dashboard.classList.add('hidden');
+    showMessage('login-message', 'Access denied. Admin only.', 'red');
+    return;
+  }
+
+  await showDashboard();
+}
+
   }
 }
 
@@ -355,8 +371,8 @@ document.getElementById('login-form')
   }
 
   document.getElementById('password').value = '';
-
-  await showDashboard();
+  
+await checkLogin();
 });
 
 async function loadAdminProducts() {
