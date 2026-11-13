@@ -109,6 +109,7 @@ section{padding:35px 4%}
 <a href="#order">Place Order</a>
 <a href="#contact">Contact</a>
 </nav>
+  <button id="customer-logout" class="gold-button">Logout</button>
 </header>
 
 <div class="hero" id="home">
@@ -249,6 +250,19 @@ async function checkCustomerSession() {
 }
 
 checkCustomerSession();
+  
+  document.getElementById('customer-logout').addEventListener('click', async function() {
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  storeContent.style.display = 'none';
+  authBox.style.display = 'block';
+  authMessage.textContent = 'You have logged out successfully.';
+});
 
 const STORE_WHATSAPP = '2348107681920';
 let storeProducts = [];
