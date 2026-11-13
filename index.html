@@ -285,6 +285,62 @@ async function checkCustomerSession() {
   }
 }
 
+const passwordResetBox = document.getElementById('password-reset-box');
+const passwordResetMessage = document.getElementById('password-reset-message');
+
+supabaseClient.auth.onAuthStateChange((event) => {
+  if (event === 'PASSWORD_RECOVERY') {
+    authBox.style.display = 'block';
+    storeContent.style.display = 'none';
+
+    document.getElementById('customer-email').style.display = 'none';
+    document.getElementById('customer-password').style.display = 'none';
+    document.getElementById('forgot-password').style.display = 'none';
+    document.getElementById('customer-login').style.display = 'none';
+    document.getElementById('customer-signup').style.display = 'none';
+
+    passwordResetBox.style.display = 'block';
+  }
+});
+
+document.getElementById('save-new-password').addEventListener('click', async function() {
+  const newPassword = document.getElementById('new-password').value;
+  const confirmPassword = document.getElementById('confirm-new-password').value;
+
+  if (newPassword.length < 6) {
+    passwordResetMessage.textContent = 'Password must be at least 6 characters.';
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    passwordResetMessage.textContent = 'Passwords do not match.';
+    return;
+  }
+
+  passwordResetMessage.textContent = 'Updating password...';
+
+  const { error } = await supabaseClient.auth.updateUser({
+    password: newPassword
+  });
+
+  if (error) {
+    passwordResetMessage.textContent = error.message;
+    return;
+  }
+
+  await supabaseClient.auth.signOut();
+
+  passwordResetBox.style.display = 'none';
+  document.getElementById('customer-email').style.display = 'block';
+  document.getElementById('customer-password').style.display = 'block';
+  document.getElementById('forgot-password').style.display = 'inline';
+  document.getElementById('customer-login').style.display = 'block';
+  document.getElementById('customer-signup').style.display = 'block';
+
+  passwordResetMessage.textContent = '';
+  authMessage.textContent = 'Password updated successfully! You can now log in.';
+});
+
 checkCustomerSession();
   
   document.getElementById('customer-logout').addEventListener('click', async function() {
