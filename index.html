@@ -83,6 +83,91 @@ section{padding:35px 4%}
 }
 body:has(#customer-auth:not([style*="display: none"])) {
   background: #3B0764;
+  
+/* SAMATHY LOGS CUSTOMER DASHBOARD */
+.customer-dashboard {
+  padding: 25px 5%;
+  background: #07152f;
+  color: white;
+  min-height: 100vh;
+}
+
+.dashboard-welcome {
+  margin-bottom: 22px;
+}
+
+.dashboard-welcome h2 {
+  color: #ffc52e;
+  font-size: 25px;
+}
+
+.wallet-card {
+  background: linear-gradient(135deg,#ffbd24,#f58b00);
+  color: #07152f;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px #0005;
+}
+
+.wallet-card h3 {
+  margin: 0 0 15px;
+}
+
+.wallet-balance {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.dashboard-button {
+  border: none;
+  background: #07152f;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+
+.dashboard-item {
+  background: #10264b;
+  border: 1px solid #263d63;
+  border-radius: 16px;
+  padding: 22px 10px;
+  text-align: center;
+  color: white;
+}
+
+.dashboard-item .dash-icon {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.dashboard-item h3 {
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+.dashboard-notice {
+  background: #10264b;
+  padding: 18px;
+  border-radius: 15px;
+  margin-top: 22px;
+}
+
+@media(max-width:400px) {
+  .dashboard-grid {
+    gap: 10px;
+  }
+}
+
 }
 </style>
 </head>
