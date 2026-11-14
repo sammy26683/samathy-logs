@@ -565,8 +565,10 @@ checkCustomerSession();
     return;
   }
 
+  document.getElementById('customer-dashboard').style.display = 'none';
   storeContent.style.display = 'none';
   authBox.style.display = 'block';
+
   authMessage.textContent = 'You have logged out successfully.';
 });
 
