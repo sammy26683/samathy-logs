@@ -364,6 +364,18 @@ const supabaseClient = window.supabase.createClient(
 const authBox = document.getElementById('customer-auth');
 const authMessage = document.getElementById('customer-auth-message');
   const storeContent = document.getElementById('store-content');
+  
+  function openCustomerProducts() {
+  const dashboard = document.getElementById('customer-dashboard');
+  const products = document.getElementById('products');
+  const order = document.getElementById('order');
+
+  dashboard.appendChild(products);
+  dashboard.appendChild(order);
+
+  products.style.display = 'block';
+  order.style.display = 'block';
+}
 
 document.getElementById('customer-signup').addEventListener('click', async function() {
   const email = document.getElementById('customer-email').value.trim();
