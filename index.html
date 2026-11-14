@@ -710,15 +710,24 @@ document.getElementById('order-form').addEventListener('submit', async function(
   }
 
   message.textContent = 'Submitting your order...';
+ 
+const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
 
-  const { error } = await supabaseClient
-    .from('store_orders')
-    .insert([{
-      customer_name: name,
-      whatsapp_number: phone,
-      product_name: product.name,
-      amount: product.price
-    }]);
+if (userError || !user) {
+  message.textContent = 'Please log in again before placing your order.';
+  return;
+}
+
+const { error } = await supabaseClient
+  .from('store_orders')
+  .insert([{
+    user_id: user.id,
+    customer_name: name,
+    whatsapp_number: phone,
+    product_name: product.name,
+    amount: product.price
+  }]);
+
 
   if(error){
     message.textContent = 'Order could not be saved. Please try again.';
