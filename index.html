@@ -415,6 +415,29 @@ const authMessage = document.getElementById('customer-auth-message');
   });
 }
   
+// CUSTOMER PROFILE
+async function openCustomerProfile() {
+  const profile = document.getElementById('customer-profile');
+  const dashboardProducts = document.getElementById('dashboard-products');
+
+  const { data: { user }, error } = await supabaseClient.auth.getUser();
+
+  if (error || !user) {
+    alert('Unable to load your profile.');
+    return;
+  }
+
+  document.getElementById('profile-email').textContent = user.email;
+
+  profile.style.display = 'block';
+  dashboardProducts.style.display = 'none';
+
+  profile.scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('close-profile').addEventListener('click', function() {
+  document.getElementById('customer-profile').style.display = 'none';
+});
 
 document.getElementById('customer-signup').addEventListener('click', async function() {
   const email = document.getElementById('customer-email').value.trim();
